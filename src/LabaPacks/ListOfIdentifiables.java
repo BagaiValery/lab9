@@ -14,21 +14,15 @@ public class ListOfIdentifiables <T extends Identifiable & Serializable> impleme
 
     public ListOfIdentifiables(){
 
-        //�������� �������� ���������� ��������������� - 1
         nextId = 1;
     }
 
-    //������ �� �������� ������ � �������� �� � ���-������
-    //��� ���� ���������� ���������� ������������� ������������������� ������
-    //������ ����� ������������� ���������� � ���� ��������� ��������������
 
     @SuppressWarnings("unchecked")
     private void readObject (final ObjectInputStream in) throws IOException, ClassNotFoundException{
 
-        //������ ���������� � ����� ���-���������
         items = (HashSet<T>)in.readObject();
 
-        //���� ������������ �������� ��������������� ������������
         nextId = 0;
         for(T item : items){
             final Integer itemId = item.getId();
@@ -36,19 +30,14 @@ public class ListOfIdentifiables <T extends Identifiable & Serializable> impleme
                 nextId = itemId;
         }
 
-        //��������� �������� ��������������� ����� �� 1 ������ ������������� ����������
         nextId++;
     }
 
-    //���������� � ��������� ����� ���������� ���-�������
-    //������ ����� ������������ ���������� ����� ��������� ��������������
     private void writeObject(final ObjectOutputStream out) throws IOException{
 
-        //���������� ���� ���- ������ � ��������� �����
         out.writeObject(items);
     }
 
-    //���������� ��������� �������� ���������������
     protected int getNextId(){
         return nextId++;
     }

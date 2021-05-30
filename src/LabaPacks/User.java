@@ -6,7 +6,6 @@ public class User implements Serializable, Identifiable {
 
     private static final long serialVersionUID = -5363773994153628499L;
 
-    //�������������� ������������ � �.�.
     private int id;
     private String login = "";
     private String name = "";
@@ -60,20 +59,16 @@ public class User implements Serializable, Identifiable {
 
     public boolean equals (Object obj){
 
-        //���� ������ �� ������ ������, ����� this, �� ��� ���� � ��� �� ������
         if(this == obj)
             return true;
 
-        //���� ������ �� ������ ������ -null, �� ������� �� �����
         if(obj == null)
             return false;
 
-        //���� ������ ��������� ������ �� ���������, ������� �� �����
         if(getClass() != obj.getClass())
             return false;
         User other = (User) obj;
 
-        //���������� ��������� �������� ���������� ����������������
         if (id != other.id)
             return false;
         return true;

@@ -15,7 +15,6 @@ public class Ad implements Serializable, Identifiable {
     private int authorId;
 
 
-    //����� ��������� (������ �� �����������)
     transient private User author;
     private Long lastMoidfied;
     transient private Date lastModifiedDate;
@@ -60,8 +59,6 @@ public class Ad implements Serializable, Identifiable {
 
     public void setLastModified(Long lastModified){
 
-        //��� ��������� ���������� ������� ��������� � ��������
-        //������������ ���������� � ����� ���������� ��������� ��� ����
         this.lastMoidfied = lastModified;
         lastModifiedDate = new Date(lastModified);
     }
@@ -76,20 +73,16 @@ public class Ad implements Serializable, Identifiable {
 
     public boolean equals(Object obj){
 
-        //���� obj - ������ �� ������ ������, ����� this, �� ��� ���� � ��� �� ������
         if(this == obj)
             return true;
 
-        //���� ������ �� ������ ������ -null, �� ������� �� �����
         if(obj == null)
             return false;
 
-        //���� ������ ��������� ������ �� ���������, ������ �� �����
         if(getClass() != obj.getClass())
             return false;
         Ad other = (Ad) obj;
 
-        //��������� ��������� �������� ���������� ����������������
         if(id != other.id)
             return false;
 

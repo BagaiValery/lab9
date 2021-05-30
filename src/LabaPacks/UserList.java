@@ -5,7 +5,6 @@ public class UserList extends ListOfIdentifiables<User> {
 
     public synchronized User findUser(String login){
 
-        //���� ������������ � �������� �������
         for(User user : items){
             if(user.getLogin().equals(login))
                 return user;
@@ -15,7 +14,6 @@ public class UserList extends ListOfIdentifiables<User> {
 
     public synchronized User findUser(Integer id){
 
-        //���� ������������ � �������� ����������������
         for(User user : items){
             if(user.getId() == id)
                 return user;
@@ -25,19 +23,14 @@ public class UserList extends ListOfIdentifiables<User> {
 
     public synchronized User addUser(User user) throws UserExistsException {
 
-        //���� ������������ � ������ ������� ��� ���������������, ���������� ����������
         if(findUser(user.getLogin()) != null) throw new UserExistsException();
 
-        //������� ��������� �� ������ id ��� ������
         user.setId((getNextId()));
 
-        //�������� ������ � ������
         items.add(user);
         return user;
     }
 
-    //����� ����������, ������������ ��� ������� ���������� ������������,
-    //��� ������������ � ������� ������� ��� ���������� � �������
     public static class UserExistsException extends Exception{
         private static final long serialVersionUID = 584737643480913385L;
     }
